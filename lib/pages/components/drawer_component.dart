@@ -28,6 +28,7 @@ class DrawerComponent extends StatelessWidget {
                     color: Color(0XFF1e224c),
                   ),
                 ),
+                const Divider(),
               ],
             ),
             Container(

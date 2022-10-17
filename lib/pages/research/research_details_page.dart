@@ -1,3 +1,4 @@
+import 'package:conectamaispg/pages/home/home_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class ResearchDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResearchViewModel search = Get.arguments;
+    final IHomePresenter presenter = Get.find<IHomePresenter>();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -32,18 +34,32 @@ class ResearchDetailsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ...search.questions.map(
-            (e) => Container(
-              margin: const EdgeInsets.only(top: 12.0),
-              padding: const EdgeInsets.all(12.0),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    e["title"],
-                    style: const TextStyle(fontSize: 16),
+                  ...search.questions.map(
+                    (e) => Container(
+                      margin: const EdgeInsets.only(top: 12.0),
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            e["title"],
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          BuildChoose(
+                            type: e["type"],
+                            options: e["options"],
+                            presenter: presenter,
+                            title: e["title"],
+                            questionId: e["id"],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  BuildChoose(type: e["type"], options: e["options"]),
                 ],
               ),
             ),
@@ -69,13 +85,13 @@ class ResearchDetailsPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                print(presenter.answer);
+                // await presenter.uploadAnswer(answer: answer, search: search, questionId: questionId);
+              },
               child: const Text(
                 "Enviar",
-                style: TextStyle(
-                  color:  Color(0XFF1e224c),
-                  fontSize: 18
-                ),
+                style: TextStyle(color: Color(0XFF1e224c), fontSize: 18),
               ),
             ),
           )

@@ -4,11 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BuildChoose extends StatefulWidget {
-  const BuildChoose({required this.type, this.options, Key? key})
-      : super(key: key);
+  const BuildChoose({
+    required this.presenter,
+    required this.type,
+    required this.title,
+    required this.questionId,
+    this.options,
+    Key? key,
+  }) : super(key: key);
 
+  final IHomePresenter presenter;
   final String type;
   final List? options;
+  final String title;
+  final String questionId;
 
   @override
   State<BuildChoose> createState() => _BuildChooseState();
@@ -40,6 +49,19 @@ class _BuildChooseState extends State<BuildChoose> {
                       groupValue: presenter.groupValue,
                       onChanged: (int? value) {
                         presenter.groupValue = value!;
+                        final Map<String, dynamic> answer = {
+                          "title": widget.title,
+                          "questionId": widget.questionId,
+                          "answer":
+                              widget.options![widget.options!.indexOf(option)],
+                        };
+
+                        presenter.answer.removeWhere(
+                          (element) =>
+                              element["questionId"] == answer["questionId"],
+                        );
+
+                        presenter.answer.add(answer);
                       },
                     ),
                     Text(

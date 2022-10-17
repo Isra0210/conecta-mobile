@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class ResearchViewModel extends Equatable {
   const ResearchViewModel({
+    required this.id,
     required this.createdAt,
     required this.createdBy,
     required this.isActive,
@@ -11,7 +12,8 @@ class ResearchViewModel extends Equatable {
     required this.answers,
     required this.users,
   });
-
+  
+  final String id;
   final Timestamp createdAt;
   final String createdBy;
   final bool isActive;
@@ -26,6 +28,7 @@ class ResearchViewModel extends Equatable {
 
   factory ResearchViewModel.fromJson(Map<String, dynamic> json) {
     return ResearchViewModel(
+      id: json['id'],
       createdAt: json['createdAt'],
       createdBy: json['createdBy'],
       isActive: json['isActive'],
@@ -38,6 +41,7 @@ class ResearchViewModel extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'createdAt': createdAt,
       'createdBy': createdBy,
       'isActive': isActive,
@@ -50,6 +54,6 @@ class ResearchViewModel extends Equatable {
 
   @override
   String toString() {
-    return "createdAt: $createdAt isActive: $isActive questions: $questions answers: $answers";
+    return "id: $id createdAt: $createdAt isActive: $isActive questions: $questions answers: $answers";
   }
 }

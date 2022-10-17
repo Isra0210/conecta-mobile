@@ -1,6 +1,6 @@
 import 'package:conectamaispg/pages/home/home_page.dart';
 import 'package:conectamaispg/pages/login/login_page.dart';
-import 'package:conectamaispg/pages/research/user_research_page.dart';
+import 'package:conectamaispg/pages/research/research_details_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

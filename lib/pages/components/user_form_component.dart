@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../presenters/research/research_view_model.dart';
-import '../research/user_research_page.dart';
+import '../research/research_details_page.dart';
 
 class UserFormComponent extends StatelessWidget {
   const UserFormComponent({
@@ -36,19 +36,19 @@ class UserFormComponent extends StatelessWidget {
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,
-                            spreadRadius: 1,
+                            spreadRadius: 0.2,
                             blurRadius: 1,
                             offset: Offset(-1, -1),
                           ),
                           BoxShadow(
                             color: Colors.grey,
+                            spreadRadius: 0.2,
                             blurRadius: 1,
                             offset: Offset(1, 1),
                           ),
                         ],
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      // margin: const EdgeInsets.symmetric(vertical: 30),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +101,8 @@ class UserFormComponent extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 14.0),
+                                              left: 14.0,
+                                            ),
                                             child: Text(
                                               question['title'],
                                               style: const TextStyle(
