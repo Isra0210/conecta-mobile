@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1005916963401",
+    "project_id": "conecta-mais-ee2b4",
+    "storage_bucket": "conecta-mais-ee2b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005916963401:android:0c6830c9f695212f577598",
+        "android_client_info": {
+          "package_name": "com.example.admconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005916963401-n2re3jaihjd9v27cbimur1r4eq2g3m0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admconnect",
+            "certificate_hash": "29053a09d6ea9a5f265c38edf4eeee3baede8ee0"
+          }
+        },
+        {
+          "client_id": "1005916963401-5pdges42k9o3s77f3vugc2c5lcec9mai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZC0Hv0fugK9mnKmA4sqV0eQWa8yM0Wm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005916963401-5pdges42k9o3s77f3vugc2c5lcec9mai.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005916963401-80togpk2bglhd7b7abkei9kh66gqc8r9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.admconnect"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005916963401:android:8d199321450abafd577598",
+        "android_client_info": {
+          "package_name": "com.example.conectamaispg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005916963401-0rfk9t0odltce01cn3b0iqh0jomc72ci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.conectamaispg",
+            "certificate_hash": "29053a09d6ea9a5f265c38edf4eeee3baede8ee0"
+          }
+        },
+        {
+          "client_id": "1005916963401-5pdges42k9o3s77f3vugc2c5lcec9mai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZC0Hv0fugK9mnKmA4sqV0eQWa8yM0Wm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005916963401-5pdges42k9o3s77f3vugc2c5lcec9mai.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1005916963401-80togpk2bglhd7b7abkei9kh66gqc8r9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.admconnect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
