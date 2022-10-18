@@ -10,9 +10,10 @@ class ResearchViewModel extends Equatable {
     required this.status,
     required this.questions,
     required this.answers,
-    required this.users,
+    required this.usersToAnswer,
+    required this.usersWhoResponded,
   });
-  
+
   final String id;
   final Timestamp createdAt;
   final String createdBy;
@@ -20,11 +21,20 @@ class ResearchViewModel extends Equatable {
   final String status;
   final List questions;
   final List answers;
-  final List users;
+  final List usersToAnswer;
+  final List usersWhoResponded;
 
   @override
-  List<Object> get props =>
-      [createdAt, createdBy, isActive, status, questions, answers, users];
+  List<Object> get props => [
+        createdAt,
+        createdBy,
+        isActive,
+        status,
+        questions,
+        answers,
+        usersToAnswer,
+        usersWhoResponded,
+      ];
 
   factory ResearchViewModel.fromJson(Map<String, dynamic> json) {
     return ResearchViewModel(
@@ -35,7 +45,8 @@ class ResearchViewModel extends Equatable {
       status: json['status'],
       questions: json['questions'],
       answers: json['answers'],
-      users: json['users'],
+      usersToAnswer: json['usersToAnswer'],
+      usersWhoResponded: json['usersWhoResponded'],
     );
   }
 
@@ -48,12 +59,13 @@ class ResearchViewModel extends Equatable {
       'status': status,
       'questions': questions,
       'answers': answers,
-      'users': users,
+      'usersToAnswer': usersToAnswer,
+      'usersWhoResponded': usersWhoResponded,
     };
   }
 
   @override
   String toString() {
-    return "id: $id createdAt: $createdAt isActive: $isActive questions: $questions answers: $answers";
+    return "id: $id createdAt: $createdAt isActive: $isActive questions: $questions answers: $answers usersWhoResponded: $usersWhoResponded";
   }
 }

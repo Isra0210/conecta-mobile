@@ -1,4 +1,5 @@
 import 'package:conectamaispg/pages/home/home_presenter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +39,12 @@ class HomePage extends StatelessWidget {
           }
 
           if (snapshot.hasData) {
-            List<ResearchViewModel> searches = snapshot.data!;
+            List<ResearchViewModel> searches = snapshot.data!
+                .where(
+                  (research) => !research.usersWhoResponded
+                      .contains(FirebaseAuth.instance.currentUser!.uid),
+                )
+                .toList();
             if (searches.isEmpty) {
               return const Center(
                 child: Text(

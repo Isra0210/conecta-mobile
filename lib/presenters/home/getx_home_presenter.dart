@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conectamaispg/mixins/loading_mixin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +7,7 @@ import '../../pages/home/home_presenter.dart';
 import '../new_research_presenter/research_enum.dart';
 import '../research/research_view_model.dart';
 
-class GetXHomePresenter extends GetxController implements IHomePresenter {
+class GetXHomePresenter extends GetxController with LoadingMixin implements IHomePresenter {
   final Rx<ResearchViewModel?> _researchViewModel = Rx(null);
   @override
   ResearchViewModel? get researchViewModel => _researchViewModel.value;
@@ -27,28 +28,53 @@ class GetXHomePresenter extends GetxController implements IHomePresenter {
   set groupValue(int value) => _groupValue.value = value;
 
   @override
-  Future<void> uploadAnswer({
-    required Map<String, dynamic> answer,
-    required ResearchViewModel search,
-    required String questionId,
-  }) async {
+  Future<void> uploadAnswer({required ResearchViewModel search}) async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
-    //TODO finish it
-    FirebaseFirestore.instance.collection('searches').doc(search.id).set({
-      'answers': [
-        {
-          'questionId': questionId,
-          'userId': uid,
-        }
+    
+    loading = true;
+
+    final DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+        .instance
+        .collection('searches')
+        .doc(search.id)
+        .get();
+
+    final List usersWhoResponded = doc.data()!["usersWhoResponded"];
+
+    await FirebaseFirestore.instance.collection('searches').doc(search.id).set({
+      'answers': answer,
+      'usersWhoResponded': [
+        ...usersWhoResponded.map((e) => e),
+        uid,
       ],
     }, SetOptions(merge: true));
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(search.createdBy)
+        .collection('searches')
+        .doc(search.id)
+        .set(
+      {
+        'answers': answer,
+        'usersWhoResponded': [
+          ...usersWhoResponded.map((e) => e),
+          uid,
+        ],
+      },
+      SetOptions(merge: true),
+    );
+    
+    loading = false;
+    Get.back();
   }
 
   @override
   Stream<List<ResearchViewModel>?> research(String filterByStatus) {
     final ref = FirebaseFirestore.instance
         .collection('searches')
-        .where('users', arrayContains: FirebaseAuth.instance.currentUser!.uid)
+        .where('usersToAnswer',
+            arrayContains: FirebaseAuth.instance.currentUser!.uid)
         .where('status', isEqualTo: ResearchStatusEnum.approved.name)
         .withConverter<ResearchViewModel>(
           fromFirestore: (snapshot, _) =>

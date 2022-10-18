@@ -1,5 +1,6 @@
 import 'package:conectamaispg/pages/home/home_presenter.dart';
 import 'package:conectamaispg/presenters/new_research_presenter/research_enum.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,6 +55,7 @@ class _BuildChooseState extends State<BuildChoose> {
                           "questionId": widget.questionId,
                           "answer":
                               widget.options![widget.options!.indexOf(option)],
+                          "userWhoResponded": FirebaseAuth.instance.currentUser!.uid,
                         };
 
                         presenter.answer.removeWhere(
